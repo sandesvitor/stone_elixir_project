@@ -48,41 +48,48 @@ The expected output will be a **map** containing key-value pair of %{email=>inte
 }
 ```
 
-## **Recursive Function**:
-
-Since Elixir threat its data immutably, the *StoneChallenge.billDistribution* function serves as a while loop, in order to distribute the remainerd of the division between the amount to pay and the number of custumers (i.e. If there is a tab with 3 custumers and the bill is 5 *centavos*, this function will determine that 2 custumers will have to pay 2 *centavos* leaving the other to pay only 1 *centavo*).
-
-Recursive functions should be used with caution, especially if dealt with code deployed in public clouds, such as AWS or Azure, that having a infinite recursive call could exhaust all the resources of such application in minutes. Therefore, *StoneChallenge.billDistribution* stablish some constrains in its call. Always when the remainder paramether goes to zero (0), the recursiveness comes to an end andthe stack is cleaned, returning a list of maps with the custumer email as a key and its bill as a value:
-
-```elixir
-[
-    %{"ana@gmail" => 493333}, 
-    %{"jonas@gmail.com" => 493333}, 
-    %{"sandesvitor@gmail.com" => 493334}
-]
-```
-
-
 
 ## **Running the Application**:
 
-Firstly, make sure the **mix** is installed by:
+Firstly, make sure that **mix** is installed:
 
 ```shell
-─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4481]
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4481]
 └─[$] mix --version                                                                   
 Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
 
 Mix 1.11.2 (compiled with Erlang/OTP 23)
 ```
 
-The simplest way to run inside **Elixir's interactive shell** (iex), passing the paramenters inside the shell, as shown bellow:
+Now, get dependencies and compile the application:
 
 ```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4436]
-└─[$] mix compile                                                                                                                                                                                                        
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4437]
-└─[$] iex -S mix                                                                                                                                                                                                          
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4520]
+└─[$] mix deps.get             
+Resolving Hex dependencies...
+Dependency resolution completed:
+Unchanged:
+  poison 3.1.0
+All dependencies are up to date
+
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4521]
+└─[$] mix compile                                                                                   
+==> poison
+Compiling 4 files (.ex)
+warning: Integer.to_char_list/2 is deprecated. Use Integer.to_charlist/2 instead
+  lib/poison/encoder.ex:173: Poison.Encoder.BitString.seq/1
+
+Generated poison app
+==> stone_challenge
+Compiling 2 files (.ex)
+Generated stone_challenge app
+```
+
+The simplest way to run inside **Elixir's interactive shell** (iex), passing the paramenters inside the shell, as shown bellow:
+
+```shell                                                                                     
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4437]
+└─[$] iex -S mix                                                                                                                                                                                        
 Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
 
 Interactive Elixir (1.11.2) - press Ctrl+C to exit (type h() ENTER for help)
@@ -106,7 +113,7 @@ iex(4)>
 A second method is to use the task **run_app**, configure inside the ./lib/mix/tasks folder, with the parameters hardcoded inside the task function. You can optionally redirect the stdout to a file, as shown bellow:
 
 ```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4483]
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4483]
 └─[$] mix run_app > results.out
 ```
 

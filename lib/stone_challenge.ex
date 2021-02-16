@@ -21,7 +21,7 @@ defmodule StoneChallenge do
           :custumersTab=>Map.put(acc.custumersTab, email, amountEvenlyDistributed + (acc.index < remainder && 1 || 0)),
           :index=>acc.index + 1
         }
-      end)
+      end).custumersTab
     end
   end
 

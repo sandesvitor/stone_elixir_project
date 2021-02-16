@@ -63,7 +63,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "1) generateBillMap function with both inputs non-empty lists" do
+  test "generateBillMap function with both inputs non-empty lists - nº 1" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
@@ -85,7 +85,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "2) generateBillMap function with both inputs non-empty lists" do
+  test "generateBillMap function with both inputs non-empty lists - nº 1" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
@@ -111,37 +111,7 @@ defmodule StoneChallengeTest do
       "gustavo@gmail" => 236851,
       "joao@gmail.com" => 236852,
       "otávio@gmail.com" => 236852,
-      "viny@gmail" => 236852
-    }
-  end
-
-  test "generateBillMap function with custumers list containing not-unique items" do
-    assert StoneChallenge.generateBill(
-      [
-        %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
-        %{:name=>"Gabinete", :count=>2, :unitPrice=>555},
-        %{:name=>"RAM", :count=>4, :unitPrice=>100000},
-        %{:name=>"Pen", :count=>2, :unitPrice=>9999},
-        %{:name=>"Tire", :count=>1, :unitPrice=>100000},
-      ],
-      [
-        "joao@gmail.com",
-        "otávio@gmail.com",
-        "otávio@gmail.com",
-        "otávio@gmail.com",
-        "otávio@gmail.com",
-        "otávio@gmail.com",
-      ])
-
-    ==
-
-    %{
-      "otávio@gmail.com" => 236851,
-      "otávio@gmail.com" => 236851,
-      "otávio@gmail.com" => 236851,
-      "joao@gmail.com" => 236852,
-      "otávio@gmail.com" => 236852,
-      "otávio@gmail.com" => 236852
+      "viny@gmail" => 236851
     }
   end
 

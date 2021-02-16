@@ -61,7 +61,7 @@ Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threa
 Mix 1.11.2 (compiled with Erlang/OTP 23)
 ```
 
-Now, get dependencies and compile the application:
+Now, get dependencies from dependencies list in **./mix.exs** and compile the application:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4520]
@@ -85,36 +85,53 @@ Compiling 2 files (.ex)
 Generated stone_challenge app
 ```
 
-The simplest way to run inside **Elixir's interactive shell** (iex), passing the paramenters inside the shell, as shown bellow:
+This application runs with a task called **run_app**, that received a list of arguments in it command and return in the stdout. This arguments must be a json, containing the shoplist and the custumers emails list. You can pass any number of json paths as an argument, and the task will concatenate on the stdout. In this repository, you will find under the **./test/json.d/** folder, two json examples. The test2.json, has a list containing 10.000 unique email entries.
 
-```shell                                                                                     
-┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4437]
-└─[$] iex -S mix                                                                                                                                                                                        
-Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
-
-Interactive Elixir (1.11.2) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> x = [%{:name=>"Laptop", :count=>1, :unitPrice=>900000}, %{:name=>"Gabinete", :count=>2, :unitPrice=>90000}, %{:name=>"RAM", :count=>4, :unitPrice=>100000}]
-[
-  %{count: 1, name: "Laptop", unitPrice: 900000},
-  %{count: 2, name: "Gabinete", unitPrice: 90000},
-  %{count: 4, name: "RAM", unitPrice: 100000}
-]
-iex(2)> y = ["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
-["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
-iex(3)> StoneChallenge.generateBill(x,y)
-%{
-  "ana@gmail" => 493333,
-  "jonas@gmail.com" => 493333,
-  "sandesvitor@gmail.com" => 493334
-}
-iex(4)>
-```
-
-A second method is to use the task **run_app**, configure inside the ./lib/mix/tasks folder, with the parameters hardcoded inside the task function. You can optionally redirect the stdout to a file, as shown bellow:
+For a single file:
 
 ```shell
-┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4483]
-└─[$] mix run_app > results.out
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4544]
+└─[$] time mix run_app test/json.d/test1.json                                                                                                                                                 
+%{
+  "almeida@gmail" => 236851,
+  "amelia@gmail" => 236851,
+  "gustavo@gmail" => 236851,
+  "joao@gmail.com" => 236852,
+  "otávio@gmail.com" => 236852,
+  "viny@gmail" => 236851
+}
+mix run_app test/json.d/test1.json  0.56s user 0.09s system 212% cpu 0.302 total
+```
+
+For two files:
+```shell
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4545]
+└─[$] time mix run_app test/json.d/test1.json test/json.d/test1.json                                                                                                                          
+%{
+  "almeida@gmail" => 236851,
+  "amelia@gmail" => 236851,
+  "gustavo@gmail" => 236851,
+  "joao@gmail.com" => 236852,
+  "otávio@gmail.com" => 236852,
+  "viny@gmail" => 236851
+}
+%{
+  "almeida@gmail" => 236851,
+  "amelia@gmail" => 236851,
+  "gustavo@gmail" => 236851,
+  "joao@gmail.com" => 236852,
+  "otávio@gmail.com" => 236852,
+  "viny@gmail" => 236851
+}
+mix run_app test/json.d/test1.json test/json.d/test1.json  0.65s user 0.06s system 230% cpu 0.308 total
+```
+
+To run *test2.json*, it will be a good idea to redirect the output to a file, in this case called *results.out*:
+
+```shell
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4549]
+└─[$] time mix run_app test/json.d/test1.json test/json.d/test1.json test/json.d/test2.json > results.out
+mix run_app test/json.d/test1.json test/json.d/test1.json  > results.out  0.57s user 0.08s system 171% cpu 0.379 total
 ```
 
 ## **Testing**:

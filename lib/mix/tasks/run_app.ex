@@ -1,7 +1,7 @@
-defmodule Mix.Tasks.RunFile do
+defmodule Mix.Tasks.RunApp do
   use Mix.Task
 
-  @shortdoc "Runs applicatio with external paramethers"
+  @shortdoc "Runs application with the parameters in ./lib/mix/tasks/run_app.ex"
   def run(_) do
 
     shoplist =
@@ -11,7 +11,7 @@ defmodule Mix.Tasks.RunFile do
         %{:name=>"RAM", :count=>41, :unitPrice=>10009999}
       ]
 
-    # 10.000 unique strings to represent 10.000 emails.
+      # 10.000 unique strings to represent 10.000 emails.
     custumers =
       [
         "AcpImHMckRK6chBUesBR@emailtester.com",

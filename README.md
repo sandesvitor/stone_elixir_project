@@ -63,6 +63,53 @@ Recursive functions should be used with caution, especially if dealt with code d
 ```
 
 
+
+## **Running the Application**:
+
+Firstly, make sure the **mix** is installed by:
+
+```shell
+─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4481]
+└─[$] mix --version                                                                   
+Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
+
+Mix 1.11.2 (compiled with Erlang/OTP 23)
+```
+
+The simplest way to run inside **Elixir's interactive shell** (iex), passing the paramenters inside the shell, as shown bellow:
+
+```shell
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4436]
+└─[$] mix compile                                                                                                                                                                                                        
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4437]
+└─[$] iex -S mix                                                                                                                                                                                                          
+Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
+
+Interactive Elixir (1.11.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> x = [%{:name=>"Laptop", :count=>1, :unitPrice=>900000}, %{:name=>"Gabinete", :count=>2, :unitPrice=>90000}, %{:name=>"RAM", :count=>4, :unitPrice=>100000}]
+[
+  %{count: 1, name: "Laptop", unitPrice: 900000},
+  %{count: 2, name: "Gabinete", unitPrice: 90000},
+  %{count: 4, name: "RAM", unitPrice: 100000}
+]
+iex(2)> y = ["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
+["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
+iex(3)> StoneChallenge.generateBill(x,y)
+%{
+  "ana@gmail" => 493333,
+  "jonas@gmail.com" => 493333,
+  "sandesvitor@gmail.com" => 493334
+}
+iex(4)>
+```
+
+A second method is to use the task **run_app**, configure inside the ./lib/mix/tasks folder, with the parameters hardcoded inside the task function. You can optionally redirect the stdout to a file, as shown bellow:
+
+```shell
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4483]
+└─[$] mix run_app > results.out
+```
+
 ## **Testing**:
 
 Softwares versions used by the host machine to perform the tests:
@@ -81,7 +128,7 @@ Host machne operating system:
 Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 3 02:25:36 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-For unit testing, this application uses **ExUnity**..
+For unit testing, this application uses **ExUnit**.
 
 The **./test** folder contains the .exs file *stone_challenge_test.exs*. To run it type:
 
@@ -105,32 +152,3 @@ The following statements were proposed for unit testing the application function
 - test "generateBillMap function with shoplist empty"
 - test "generateBillMap function with custumers list empty"
 - test "generateBillMap function with both lists empty" 
-
-## **Running the Application**:
-
-The simplest way to run this application is to compile with mix and than open up **Elixir's interactive shell** (iex), paasing the paramenters inside the shell, as shown bellow:
-
-```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4436]
-└─[$] mix compile                                                                                                                                                                                                         [15:13:02]
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4437]
-└─[$] iex -S mix                                                                                                                                                                                                          [15:13:06]
-Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
-
-Interactive Elixir (1.11.2) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> x = [%{:name=>"Laptop", :count=>1, :unitPrice=>900000}, %{:name=>"Gabinete", :count=>2, :unitPrice=>90000}, %{:name=>"RAM", :count=>4, :unitPrice=>100000}]
-[
-  %{count: 1, name: "Laptop", unitPrice: 900000},
-  %{count: 2, name: "Gabinete", unitPrice: 90000},
-  %{count: 4, name: "RAM", unitPrice: 100000}
-]
-iex(2)> y = ["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
-["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
-iex(3)> StoneChallenge.generateBill(x,y)
-%{
-  "ana@gmail" => 493333,
-  "jonas@gmail.com" => 493333,
-  "sandesvitor@gmail.com" => 493334
-}
-iex(4)>
-```

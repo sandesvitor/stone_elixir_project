@@ -2,20 +2,6 @@ defmodule StoneChallengeTest do
   use ExUnit.Case
   doctest StoneChallenge
 
-  test "recursion billDistribution function with rem == 0" do
-    assert StoneChallenge.billDistribution([%{"test@test.com"=>1000}], 0, 0) == [%{"test@test.com"=>1000}]
-  end
-
-  test " recursion billDistribution function with rem > 0" do
-    assert StoneChallenge.billDistribution(
-      [
-        %{"test1@test.com"=>0},
-        %{"test2@test.com"=>0},
-        %{"test3@test.com"=>0},
-      ], 2, 0)
-
-    == [%{"test1@test.com" => 1}, %{"test2@test.com" => 1}, %{"test3@test.com" => 0}]
-  end
 
   test "check if number of key-value pair in output of generateBillMap is equal to custumers list length" do
     assert StoneChallenge.generateBill([

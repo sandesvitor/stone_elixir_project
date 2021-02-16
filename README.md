@@ -65,7 +65,23 @@ Recursive functions should be used with caution, especially if dealt with code d
 
 ## **Testing**:
 
-This application uses **ExUnity** to facilitate its tests.
+Softwares versions used by the host machine to perform the tests:
+
+```shell
+Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
+
+Elixir 1.11.2 (compiled with Erlang/OTP 23)
+
+Mix 1.11.2 (compiled with Erlang/OTP 23)
+```
+
+Host machne operating system:
+
+```shell
+Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 3 02:25:36 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+For unit testing, this application uses **ExUnity**..
 
 The **./test** folder contains the .exs file *stone_challenge_test.exs*. To run it type:
 

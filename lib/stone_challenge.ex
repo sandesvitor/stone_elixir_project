@@ -1,12 +1,12 @@
 defmodule StoneChallenge do
 
   # return list of maps containing email and amount to pay
-  def billDistribution(custumersTab, rem, _) when rem == 0 do
+  defp billDistribution(custumersTab, rem, _) when rem == 0 do
     custumersTab
   end
 
   # makes recursive calls until the remaider of the bill is zero
-  def billDistribution(custumersTab, rem, index) do
+  defp billDistribution(custumersTab, rem, index) do
     Enum.map(custumersTab, fn custumer ->
       case Enum.find_index(custumersTab, fn x -> x == custumer end) == index do
         true -> for {key, value} <- Enum.at(custumersTab, index), into: %{}, do: {key, value + 1}

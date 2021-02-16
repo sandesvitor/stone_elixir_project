@@ -16,6 +16,11 @@ defmodule StoneChallenge do
     |> billDistribution(rem - 1, index + 1)
   end
 
+  def calculateAmount(shoplist) do
+    Enum.map(shoplist, fn item -> item.count * item.unitPrice end)
+    |> Enum.reduce(fn (curr, acc) -> curr + acc end)
+  end
+
   def generateBill(products, custumers) do
     case { length(products), length(custumers) } do
       {0, 0} -> %{:error =>:lists_empty}
@@ -23,9 +28,7 @@ defmodule StoneChallenge do
       {_, 0} -> %{:error =>:client_list_empty}
       _ ->
 
-      amountToPay = Enum.map(products, fn item -> item.count * item.unitPrice end)
-      |> Enum.reduce(fn (curr, acc) -> curr + acc end)
-
+      amountToPay = calculateAmount(products)
       amountEvenlyDistributed = Integer.floor_div((amountToPay - rem(amountToPay, length(custumers))), length(custumers))
       remaider = rem(amountToPay, length(products))
 

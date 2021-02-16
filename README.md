@@ -99,11 +99,38 @@ Randomized with seed 507635
 
 The following statements were proposed for unit testing the application functions:
 
-- test "recursion billDistribution function with rem == 0";
-- test " recursion billDistribution function with rem > 0"
 - test "check if number of key-value pair in output of generateBillMap is equal to custumers list length"
 - test "generateBillMap function with both inputs non-empty lists - 1" 
 - test "generateBillMap function with both inputs non-empty lists - 2" 
 - test "generateBillMap function with shoplist empty"
 - test "generateBillMap function with custumers list empty"
 - test "generateBillMap function with both lists empty" 
+
+## **Running the Application**:
+
+The simplest way to run this application is to compile with mix and than open up **Elixir's interactive shell** (iex), paasing the paramenters inside the shell, as shown bellow:
+
+```shell
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4436]
+└─[$] mix compile                                                                                                                                                                                                         [15:13:02]
+┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4437]
+└─[$] iex -S mix                                                                                                                                                                                                          [15:13:06]
+Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
+
+Interactive Elixir (1.11.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> x = [%{:name=>"Laptop", :count=>1, :unitPrice=>900000}, %{:name=>"Gabinete", :count=>2, :unitPrice=>90000}, %{:name=>"RAM", :count=>4, :unitPrice=>100000}]
+[
+  %{count: 1, name: "Laptop", unitPrice: 900000},
+  %{count: 2, name: "Gabinete", unitPrice: 90000},
+  %{count: 4, name: "RAM", unitPrice: 100000}
+]
+iex(2)> y = ["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
+["sandesvitor@gmail.com", "jonas@gmail.com", "ana@gmail"]
+iex(3)> StoneChallenge.generateBill(x,y)
+%{
+  "ana@gmail" => 493333,
+  "jonas@gmail.com" => 493333,
+  "sandesvitor@gmail.com" => 493334
+}
+iex(4)>
+```

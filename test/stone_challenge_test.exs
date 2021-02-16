@@ -17,6 +17,24 @@ defmodule StoneChallengeTest do
     == [%{"test1@test.com" => 1}, %{"test2@test.com" => 1}, %{"test3@test.com" => 0}]
   end
 
+  test "check if number of key-value pair in output of generateBillMap is equal to custumers list length" do
+    assert StoneChallenge.generateBill([
+      %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
+      %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
+      %{:name=>"RAM", :count=>4, :unitPrice=>100000},
+    ],
+    [
+      "sandesvitor@gmail.com",
+      "jonas@gmail.com",
+      "ana@gmail"
+    ])
+      |> Map.keys()
+      |> Enum.count()
+
+    == 3
+
+  end
+
   test "generateBillMap function with both inputs non-empty lists - 1" do
     assert StoneChallenge.generateBill(
       [
@@ -69,7 +87,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "generateBillMap function with both shoplist empty" do
+  test "generateBillMap function with shoplist empty" do
     assert StoneChallenge.generateBill(
       [],
       [

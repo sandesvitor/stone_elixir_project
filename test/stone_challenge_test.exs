@@ -2,16 +2,23 @@ defmodule StoneChallengeTest do
   use ExUnit.Case
   doctest StoneChallenge
 
-  test "recursion billDistribution function with change == 0" do
+  test "recursion billDistribution function with rem == 0" do
     assert StoneChallenge.billDistribution([%{"test@test.com"=>1000}], 0, 0) == [%{"test@test.com"=>1000}]
   end
 
-  # test " recursion billDistribution function with change > 0" do
-  #   assert StoneChallenge.billDistribution([%{"test@test.com"=>1000}], 0, 0) == [%{"test@test.com"=>1000}]
-  # end
+  test " recursion billDistribution function with rem > 0" do
+    assert StoneChallenge.billDistribution(
+      [
+        %{"test1@test.com"=>0},
+        %{"test2@test.com"=>0},
+        %{"test3@test.com"=>0},
+      ], 2, 0)
 
-  test "generateBillMap function with both inputs not-empty lists 1" do
-    assert StoneChallenge.generateBillMap(
+    == [%{"test1@test.com" => 1}, %{"test2@test.com" => 1}, %{"test3@test.com" => 0}]
+  end
+
+  test "generateBillMap function with both inputs non-empty lists - 1" do
+    assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
         %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -32,8 +39,8 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "generateBillMap function with both inputs not-empty lists 2" do
-    assert StoneChallenge.generateBillMap(
+  test "generateBillMap function with both inputs non-empty lists - 2" do
+    assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
         %{:name=>"Gabinete", :count=>2, :unitPrice=>555},
@@ -63,7 +70,7 @@ defmodule StoneChallengeTest do
   end
 
   test "generateBillMap function with both shoplist empty" do
-    assert StoneChallenge.generateBillMap(
+    assert StoneChallenge.generateBill(
       [],
       [
         "joao@gmail.com",
@@ -87,7 +94,7 @@ defmodule StoneChallengeTest do
   end
 
   test "generateBillMap function with custumers list empty" do
-    assert StoneChallenge.generateBillMap(
+    assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
         %{:name=>"Gabinete", :count=>2, :unitPrice=>555},
@@ -103,7 +110,7 @@ defmodule StoneChallengeTest do
   end
 
   test "generateBillMap function with both lists empty" do
-    assert StoneChallenge.generateBillMap([],[]) == %{:error => :lists_empty}
+    assert StoneChallenge.generateBill([],[]) == %{:error => :lists_empty}
   end
 
 end

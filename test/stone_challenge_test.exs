@@ -4,7 +4,7 @@ defmodule StoneChallengeTest do
   doctest Mix.Tasks.RunApp
 
 
-  test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 3" do
+  test "check if the number of key-value pairs in the output of StoneChallenge.generateBill is equal to the customer list of length 3" do
     assert StoneChallenge.generateBill([
       %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
       %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -22,7 +22,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 1" do
+  test "check if the number of key-value pairs in the output of StoneChallenge.generateBill is equal to the customer list of length 1" do
     assert StoneChallenge.generateBill([
       %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
       %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -140,7 +140,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "StoneChallenge.generateBill function with custumers list empty" do
+  test "StoneChallenge.generateBill function with customers list empty" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},

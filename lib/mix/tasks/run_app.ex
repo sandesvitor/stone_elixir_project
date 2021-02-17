@@ -5,7 +5,7 @@ defmodule Mix.Tasks.RunApp do
   def run(args) do
     Enum.each(args, fn filepath ->
       json_parsed = filepath |> File.read! |> Poison.decode!(keys: :atoms)
-      StoneChallenge.generateBill(json_parsed.shoplist, json_parsed.custumers)
+      StoneChallenge.generateBill(json_parsed.shoplist, json_parsed.customers)
       |> IO.inspect(limit: :infinity)
     end)
   end

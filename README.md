@@ -9,7 +9,7 @@ This repository represents the challenge proposed by **Stone Pagamentos** for it
 
 This project uses *mix* for a easier compilation, usage and testing of the application. The **./lib** folder contains the *stone_challenge.ex* file, with the module for this app, *StoneChallenge*. The function *StoneChallenge.generateBill* is the main function that correspond to the propoused challenge.
 
-The paramethers for *StoneChallenge.generateBill* are:
+The parameters for *StoneChallenge.generateBill* are:
 
 ### **1. products**:
 
@@ -23,7 +23,7 @@ A **list** of **maps**, each containing the key-value pairs *%{:name=>string, :c
 ]
 ```
 
-As stated by the command of the challenge, this project uses integer numbers for the *unitPrice* value. The used currency is the Brazilian cents, or *centavos*, 100 *centavos* being equal to 1 Real (R$1,00), thus avoiding the use of float numbers.
+As stated by the command of the challenge, this project uses integer numbers for the *unitPrice* value. The used currency is the Brazilian cents, or *centavos*, 100 *centavos* being equal to 1 *Real* (R$1,00), thus avoiding the use of float numbers.
 
 
 ### **2. customers**:
@@ -38,7 +38,9 @@ A list of strings representing all the customer emails (one custumer is represen
 ]
 ```
 
-The expected output is **map** containing key-value pairs of %{email=>integer, ...}. In this case the keys are **strings**, and the number of the key-value pairs is equal to the length of the customer list.
+### **Output**:
+
+The expected output is a **map** containing key-value pairs of *%{email=>integer, ...}*. In this case the keys are **strings**, and the number of the key-value pairs is equal to the length of the customer list.
 
 ```elixir
 %{
@@ -69,7 +71,7 @@ Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 
 
 *For Elixir and the Erlang virtual machine installation, visit Elixir's web page on https://elixir-lang.org/install.html.*
 
-Firstly, open up a terminal in your computer and make sure that **mix** is installed:
+Firstly, inside the root folder of this repository, open up a terminal in your computer and make sure that **mix** is installed:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4481]
@@ -79,7 +81,7 @@ Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threa
 Mix 1.11.2 (compiled with Erlang/OTP 23)
 ```
 
-Now, to get the dependencies stated in the dependencies list (**./mix.exs**), use **mix** **deps.get** command:
+Now, to get the dependencies stated in the dependencies list (**./mix.exs**), use **mix deps.get** command:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4520]
@@ -107,7 +109,7 @@ Compiling 2 files (.ex)
 Generated stone_challenge app
 ```
 
-This application runs with a task called **run_app**, that receives a list of arguments and returns a map that represents the customers'bill (amount in *centavos*). The arguments must be the paths of json files, containing the shoplist and the customer email list, as follows:
+This application runs with a task called **run_app**, that receives a list of arguments and returns a map that represents the customers'bill (amount in *centavos*). The arguments for this command must be the paths of json files, containing the **shoplist** and the **customer email list**, as follows:
 
 ```json
 {
@@ -131,7 +133,7 @@ This application runs with a task called **run_app**, that receives a list of ar
 
 You may pass any number of json paths as arguments, and the task will concatenate every resulting map on the *stdout*, using Elixir's **IO** module. In this repository, you will find under the **./test/json.d/** folder, two json examples (the **./test/json.d/test2.json**, for instance, has a list containing 10.000 unique email entries). Run it using **mix run_app <args>**.
 
-NOTE: In the examples bellow, the **time** binary was used only to check performance between different sized lists. 
+*NOTE: In the examples bellow, the **time** binary was used only to check performance between different sized lists.*
 
 For a single file:
 

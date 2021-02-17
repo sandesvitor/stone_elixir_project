@@ -1,7 +1,6 @@
 defmodule StoneChallengeTest do
   use ExUnit.Case
   doctest StoneChallenge
-  doctest Mix.Tasks.RunApp
 
 
   test "check if the number of key-value pairs in the output of StoneChallenge.generateBill is equal to the customer list of length 3" do

@@ -129,7 +129,9 @@ This application runs with a task called **run_app**, that receives a list of ar
 }
 ```
 
-You may pass any number of json paths as arguments, and the task will concatenate every resulting map on the *stdout*, using Elixir's **IO** module. In this repository, you will find under the **./test/json.d/** folder, two json examples. The **./test/json.d/test2.json**, has a list containing 10.000 unique email entries.
+You may pass any number of json paths as arguments, and the task will concatenate every resulting map on the *stdout*, using Elixir's **IO** module. In this repository, you will find under the **./test/json.d/** folder, two json examples (the **./test/json.d/test2.json**, for instance, has a list containing 10.000 unique email entries). Run it using **mix run_app <args>**.
+
+NOTE: In the examples bellow, the **time** binary was used only to check performance between different sized lists. 
 
 For a single file:
 
@@ -171,13 +173,14 @@ For two files:
 mix run_app test/json.d/test1.json test/json.d/test1.json  0.65s user 0.06s system 230% cpu 0.308 total
 ```
 
-To run *test2.json*, it will be a good idea to redirect the output to a file, in the example bellow named *results.out*:
+Running both json files and redirecting the output to a file named *results.out*:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4549]
-└─[$] time mix run_app test/json.d/test1.json test/json.d/test1.json test/json.d/test2.json > results.out
-mix run_app test/json.d/test1.json test/json.d/test1.json  > results.out  0.57s user 0.08s system 171% cpu 0.379 total
+└─[$] time mix run_app test/json.d/test1.json test/json.d/test2.json > results.out
+mix run_app test/json.d/test1.json test/json.d/test2.json > results.out  0.66s user 0.12s system 207% cpu 0.372 total
 ```
+
 
 ## **Testing**:
 

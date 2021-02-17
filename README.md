@@ -67,7 +67,7 @@ Host machne operating system:
 Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 3 02:25:36 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-To install Elixir and the Earlang virtual machine, visit Elixir's web page on https://elixir-lang.org/install.html.
+To install Elixir and the Erlang virtual machine, visit Elixir's web page on https://elixir-lang.org/install.html.
 
 Firstly, make sure that **mix** is installed:
 

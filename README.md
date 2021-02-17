@@ -79,7 +79,7 @@ Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threa
 Mix 1.11.2 (compiled with Erlang/OTP 23)
 ```
 
-Now, to get the dependencies stated in the dependencies list (**./mix.exs**), use **mix** command:
+Now, to get the dependencies stated in the dependencies list (**./mix.exs**), use **mix** **deps.get** command:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4520]

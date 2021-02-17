@@ -1,8 +1,7 @@
 defmodule StoneChallenge do
 
   def calculateAmount(shoplist) do
-    Enum.map(shoplist, fn item -> item.count * item.unitPrice end)
-    |> Enum.reduce(fn (curr, acc) -> curr + acc end)
+    Enum.reduce(shoplist, 0, fn (item, acc) -> (item.count * item.unitPrice) + acc  end)
   end
 
   def generateBill(products, customers) do

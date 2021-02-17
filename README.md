@@ -1,19 +1,19 @@
 # StoneChallenge
 
-This is application represents the challenge propouse by **Stone Pagamentos** for its selection process, **Programa de Formação em Elixir** due to end on february 19<sup>th</sup>.
+This repository represents the challenge propouse by **Stone Pagamentos** for its selection process, **Programa de Formação em Elixir**, due to end on february 19<sup>th</sup>, containing the main application with its tasks and unit tests.
 
 ---
 
 
 ## **Data**:
 
-This project uses *mix* for a much easier compilation and testing of the application. The **./lib** folder contains the *stone_challenge.ex* file, with the only module for this app. The function *StoneChallenge.generateBill* is the main function that correspond to the propoused challenge, along with other function that compose the calculations, the recursive function *StoneChallenge.billDistribution*
+This project uses *mix* for a much easier compilation and testing of the application. The **./lib** folder contains the *stone_challenge.ex* file, with the only module for this app. The function *StoneChallenge.generateBill* is the main function that correspond to the propoused challenge.
 
 The paramethers for *StoneChallenge.generateBill* are:
 
 ### **1. products**:
 
-A **list** of **maps**, each of it containing the key-value pairs %{:name=>string, :count=>integer, :unitPrice=>integer}. In this case, the keys are all atoms.
+A **list** of **maps**, each of it containing the key-value pairs *%{:name=>string, :count=>integer, :unitPrice=>integer}*. In this case, the keys are all atoms.
 
 ```elixir
 [
@@ -38,7 +38,7 @@ A list of strings representing all the custumers emails (one custumer is represe
 ]
 ```
 
-The expected output will be a **map** containing key-value pair of %{email=>integer, ...}. In this case the keys are strings, and the number of key-value pair is equal to the length of the custumers list.
+The expected output will be a **map** containing key-value pairs of %{email=>integer, ...}. In this case the keys are strings, and the number of the key-value pairs is equal to the length of the custumers list.
 
 ```elixir
 %{
@@ -103,7 +103,7 @@ Compiling 2 files (.ex)
 Generated stone_challenge app
 ```
 
-This application runs with a task called **run_app**, that receives a list of arguments and returns into the stdout the newly generated bill for the custumers to pay (amount in *centavos*). The arguments must be json file paths, containing the shoplist and the custumers email list, as it follows:
+This application runs with a task called **run_app**, that receives a list of arguments and returns into the stdout the newly generated bill for the custumers to pay (amount in *centavos*). The arguments must be the paths of json files, containing the shoplist and the custumers email list, as it follows:
 
 ```json
 {
@@ -130,7 +130,7 @@ You may pass any number of json paths as an argument, and the task will concaten
 For a single file:
 
 ```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4544]
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4544]
 └─[$] time mix run_app test/json.d/test1.json                                                                                                                                                 
 %{
   "almeida@gmail" => 236851,
@@ -145,7 +145,7 @@ mix run_app test/json.d/test1.json  0.56s user 0.09s system 212% cpu 0.302 total
 
 For two files:
 ```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4545]
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4545]
 └─[$] time mix run_app test/json.d/test1.json test/json.d/test1.json                                                                                                                          
 %{
   "almeida@gmail" => 236851,
@@ -169,14 +169,14 @@ mix run_app test/json.d/test1.json test/json.d/test1.json  0.65s user 0.06s syst
 To run *test2.json*, it will be a good idea to redirect the output to a file, in this case called *results.out*:
 
 ```shell
-┌─[sandesvitor@pop-os] - [~/Projeckts/stone_challenge] - [4549]
+┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4549]
 └─[$] time mix run_app test/json.d/test1.json test/json.d/test1.json test/json.d/test2.json > results.out
 mix run_app test/json.d/test1.json test/json.d/test1.json  > results.out  0.57s user 0.08s system 171% cpu 0.379 total
 ```
 
 ## **Testing**:
 
-For unit testing, this application uses **ExUnit**.
+For unit testing, this application uses **ExUnit**, standard for *mix's* projects.
 
 The **./test** folder contains the .exs file *stone_challenge_test.exs*. To run it type:
 
@@ -186,16 +186,16 @@ The **./test** folder contains the .exs file *stone_challenge_test.exs*. To run 
 [11:33:03]
 ........
 
-Finished in 0.05 seconds
-8 tests, 0 failures
+Finished in 0.06 seconds
+9 tests, 0 failures
 
-Randomized with seed 507635
+Randomized with seed 536858
 ```
 
 The following statements were proposed for unit testing the application functions:
 
 - test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 3";
-- test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 11" 
+- test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 1" 
 - test "StoneChallenge.calculateAmount function with random shoplist - nº 1" 
 - test "StoneChallenge.calculateAmount function with random shoplist - nº 2"
 - test "StoneChallenge.generateBill function with both inputs non-empty lists - nº 1"

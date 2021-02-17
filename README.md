@@ -51,6 +51,24 @@ The expected output will be a **map** containing key-value pair of %{email=>inte
 
 ## **Running the Application**:
 
+Softwares versions used by the host machine to perform the tests:
+
+```shell
+Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
+
+Elixir 1.11.2 (compiled with Erlang/OTP 23)
+
+Mix 1.11.2 (compiled with Erlang/OTP 23)
+```
+
+Host machne operating system:
+
+```shell
+Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 3 02:25:36 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+To install Elixir and the Earlang virtual machine, visit Elixir's web page on https://elixir-lang.org/install.html.
+
 Firstly, make sure that **mix** is installed:
 
 ```shell
@@ -61,7 +79,7 @@ Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threa
 Mix 1.11.2 (compiled with Erlang/OTP 23)
 ```
 
-Now, get dependencies from dependencies list in **./mix.exs** and compile the application:
+Now, get the dependencies from dependencies list in **./mix.exs** and compile the application:
 
 ```shell
 ┌─[sandesvitor@pop-os] - [~/stone_challenge] - [4520]
@@ -85,7 +103,29 @@ Compiling 2 files (.ex)
 Generated stone_challenge app
 ```
 
-This application runs with a task called **run_app**, that received a list of arguments in it command and return in the stdout. This arguments must be a json, containing the shoplist and the custumers emails list. You can pass any number of json paths as an argument, and the task will concatenate on the stdout. In this repository, you will find under the **./test/json.d/** folder, two json examples. The test2.json, has a list containing 10.000 unique email entries.
+This application runs with a task called **run_app**, that receives a list of arguments and returns into the stdout the newly generated bill for the custumers to pay (amount in *centavos*). The arguments must be json file paths, containing the shoplist and the custumers email list, as it follows:
+
+```json
+{
+  "shoplist": [
+      {"name":"Laptop", "count":1, "unitPrice": 900000},
+      {"name":"Gabinete", "count":2, "unitPrice": 555},
+      {"name":"RAM", "count":4, "unitPrice": 100000},
+      {"name":"Pen", "count":2, "unitPrice": 9999},
+      {"name":"Tire", "count":1, "unitPrice": 100000}
+    ],
+  "custumers": [
+      "joao@gmail.com",
+      "otávio@gmail.com",
+      "viny@gmail",
+      "almeida@gmail",
+      "gustavo@gmail",
+      "amelia@gmail"
+  ]
+}
+```
+
+You may pass any number of json paths as an argument, and the task will concatenate every resulting map on the stdout. In this repository, you will find under the **./test/json.d/** folder, two json examples. The **./test/json.d/test2.json**, has a list containing 10.000 unique email entries.
 
 For a single file:
 
@@ -136,22 +176,6 @@ mix run_app test/json.d/test1.json test/json.d/test1.json  > results.out  0.57s 
 
 ## **Testing**:
 
-Softwares versions used by the host machine to perform the tests:
-
-```shell
-Erlang/OTP 23 [erts-11.1.7] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [hipe]
-
-Elixir 1.11.2 (compiled with Erlang/OTP 23)
-
-Mix 1.11.2 (compiled with Erlang/OTP 23)
-```
-
-Host machne operating system:
-
-```shell
-Linux pop-os 5.8.0-7642-generic #47~1612288990~20.04~b8113e7-Ubuntu SMP Wed Feb 3 02:25:36 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
-```
-
 For unit testing, this application uses **ExUnit**.
 
 The **./test** folder contains the .exs file *stone_challenge_test.exs*. To run it type:
@@ -170,9 +194,12 @@ Randomized with seed 507635
 
 The following statements were proposed for unit testing the application functions:
 
-- test "check if number of key-value pair in output of generateBillMap is equal to custumers list length"
-- test "generateBillMap function with both inputs non-empty lists - 1" 
-- test "generateBillMap function with both inputs non-empty lists - 2" 
-- test "generateBillMap function with shoplist empty"
-- test "generateBillMap function with custumers list empty"
-- test "generateBillMap function with both lists empty" 
+- test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 3";
+- test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 11" 
+- test "StoneChallenge.calculateAmount function with random shoplist - nº 1" 
+- test "StoneChallenge.calculateAmount function with random shoplist - nº 2"
+- test "StoneChallenge.generateBill function with both inputs non-empty lists - nº 1"
+- test "StoneChallenge.generateBill function with both inputs non-empty lists - nº 2" 
+- test "StoneChallenge.generateBill function with shoplist empty" 
+- test "StoneChallenge.generateBill function with custumers list empty" 
+- test "StoneChallenge.generateBill function with both lists empty" 

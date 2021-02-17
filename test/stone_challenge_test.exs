@@ -1,9 +1,10 @@
 defmodule StoneChallengeTest do
   use ExUnit.Case
   doctest StoneChallenge
+  doctest Mix.Tasks.RunApp
 
 
-  test "check if number of key-value pair in output of generateBillMap is equal to custumers list of length 3" do
+  test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 3" do
     assert StoneChallenge.generateBill([
       %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
       %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -21,7 +22,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "check if number of key-value pair in output of generateBillMap is equal to custumers list of length 1" do
+  test "check if number of key-value pair in output of StoneChallenge.generateBill is equal to custumers list of length 1" do
     assert StoneChallenge.generateBill([
       %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
       %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -37,7 +38,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "1) calculateAmountFunction with random shoplist" do
+  test "StoneChallenge.calculateAmount function with random shoplist - nº 1" do
     assert StoneChallenge.calculateAmount([
       %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
       %{:name=>"Gabinete", :count=>2, :unitPrice=>90000},
@@ -50,7 +51,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "2) calculateAmountFunction with random shoplist" do
+  test "StoneChallenge.calculateAmount function with random shoplist - nº 2" do
     assert StoneChallenge.calculateAmount([
       %{:name=>"Laptop", :count=>10, :unitPrice=>900000313},
       %{:name=>"Gabinete", :count=>12, :unitPrice=>900223100},
@@ -63,7 +64,7 @@ defmodule StoneChallengeTest do
 
   end
 
-  test "generateBillMap function with both inputs non-empty lists - nº 1" do
+  test "StoneChallenge.generateBill function with both inputs non-empty lists - nº 1" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
@@ -85,7 +86,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "generateBillMap function with both inputs non-empty lists - nº 1" do
+  test "StoneChallenge.generateBill function with both inputs non-empty lists - nº 2" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
@@ -115,7 +116,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "generateBillMap function with shoplist empty" do
+  test "StoneChallenge.generateBill function with shoplist empty" do
     assert StoneChallenge.generateBill(
       [],
       [
@@ -139,7 +140,7 @@ defmodule StoneChallengeTest do
     }
   end
 
-  test "generateBillMap function with custumers list empty" do
+  test "StoneChallenge.generateBill function with custumers list empty" do
     assert StoneChallenge.generateBill(
       [
         %{:name=>"Laptop", :count=>1, :unitPrice=>900000},
@@ -155,7 +156,7 @@ defmodule StoneChallengeTest do
     %{:error => :client_list_empty}
   end
 
-  test "generateBillMap function with both lists empty" do
+  test "StoneChallenge.generateBill function with both lists empty" do
     assert StoneChallenge.generateBill([],[]) == %{:error => :lists_empty}
   end
 
